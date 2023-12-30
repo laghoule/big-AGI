@@ -1,5 +1,5 @@
 # Base
-FROM node:18-alpine AS base
+FROM node:20-alpine AS base
 ENV NEXT_TELEMETRY_DISABLED 1
 
 # Dependencies
@@ -47,7 +47,7 @@ ENV NODE_ENV production
 ENV PATH $PATH:/app/node_modules/.bin
 
 # Run as non-root user
-USER nextjs
+USER 1001
 
 # Expose port 3000 for the application to listen on
 EXPOSE 3000
