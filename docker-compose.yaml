@@ -6,9 +6,18 @@ version: '3.9'
 
 services:
   big-agi:
-    image: ghcr.io/enricoros/big-agi:latest
+    image: laghoule/big-agi:v1.15.1-1
     ports:
       - "3000:3000"
     env_file:
       - .env
     command: [ "next", "start", "-p", "3000" ]
+    depends_on:
+      - browserless
+
+  browserless:
+    image: browserless/chrome:latest
+    ports:
+      - "9222:3000"  # Map host's port 9222 to container's port 3000
+    environment:
+      - MAX_CONCURRENT_SESSIONS=10
